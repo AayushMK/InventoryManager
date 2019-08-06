@@ -90,7 +90,7 @@ public class Edit extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(780, 565));
+        setPreferredSize(new java.awt.Dimension(830, 660));
 
         salsemanInfoTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
