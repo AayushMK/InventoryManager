@@ -5,7 +5,7 @@
  */
 package ui;
 
-import Model.Salesman;
+import Model.Stockist;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -32,18 +32,27 @@ public class Edit extends javax.swing.JPanel {
         
     }
       //code to add content into the JTable
-    public ArrayList<Salesman> salsemanList(){
-        ArrayList<Salesman> sl = new ArrayList<>();
+    public ArrayList<Stockist> salsemanList(){
+        ArrayList<Stockist> sl = new ArrayList<>();
         try{
         Class.forName("com.mysql.jdbc.Driver");
-            try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/inventorymanagerdatabase","root",""); Statement st = con.createStatement()) {
-                ResultSet rs = st.executeQuery("Select * from salseman");
-                Salesman salseman;
+            try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/i_database","root",""); Statement st = con.createStatement()) {
+                ResultSet rs = st.executeQuery("Select * from stockist");
+                
                 while(rs.next()){
-                    salseman = new Salesman(rs.getInt("sn"), rs.getString("organization_name"),rs.getString("address"),rs.getString("discount_rate"),rs.getString("credit_limit"),rs.getString("phone_number"),rs.getString("pan_number"));
-                    sl.add(salseman);
+                    Stockist s = new Stockist();
+                    s.setPan_number(rs.getString("pan_number"));
+                    s.setName(rs.getString("full_name"));
+                    s.setOrganizations_name(rs.getString("organizations_name"));
+                    s.setAddress(rs.getString("address"));
+                    s.setPhone_number(rs.getString("phone_number"));
+                    s.setDiscount_rate(rs.getFloat("discount_rate"));
+                    s.setCredit_limit(rs.getInt("credit_rate"));
+                    sl.add(s);
                     
                 }
+               
+                
             }
        
     }catch(ClassNotFoundException | SQLException e){
@@ -53,18 +62,19 @@ public class Edit extends javax.swing.JPanel {
     }
     
     private void showInfo(){
-        ArrayList<Salesman> sl = salsemanList();
+        ArrayList<Stockist> sl = salsemanList();
         DefaultTableModel model = (DefaultTableModel) salsemanInfoTable.getModel();
         Object[] n = new Object[7];
        
         for (int i = 0; i < sl.size(); i++) {
-            n[0] = sl.get(i).getSn();
-            n[1] = sl.get(i).getOrganization_name();
-            n[2] = sl.get(i).getAddress();
-            n[3] = sl.get(i).getPan_number();
-            n[4] = sl.get(i).getDiscount_rate();
-            n[5] = sl.get(i).getCredit_limit();
-            n[6] = sl.get(i).getPhone_number();
+            n[0] = sl.get(i).getPan_number();
+            n[1] = sl.get(i).getName();
+            n[2] = sl.get(i).getOrganizations_name();
+            n[3] = sl.get(i).getAddress();
+            n[4] = sl.get(i).getPhone_number();
+            n[5] = sl.get(i).getDiscount_rate();
+            n[6] = sl.get(i).getCredit_limit();
+            
             model.addRow(n);
             
         }
@@ -80,13 +90,9 @@ public class Edit extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        addemp = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         salsemanInfoTable = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        addemp = new javax.swing.JScrollPane();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -97,7 +103,7 @@ public class Edit extends javax.swing.JPanel {
 
             },
             new String [] {
-                "sn", "Organization's name", "Address ", "Pan number", "Discount rate", "Credit limit", "Phone number"
+                "Pan Number", "Name", "Organization's Name", "Address", "Phone number", "Discount Rate", "Credit Limit"
             }
         ));
         salsemanInfoTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -107,93 +113,29 @@ public class Edit extends javax.swing.JPanel {
         salsemanInfoTable.setVerifyInputWhenFocusTarget(false);
         jScrollPane1.setViewportView(salsemanInfoTable);
 
-        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel3MouseClicked(evt);
-            }
-        });
-
-        jLabel1.setText("Add employee");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(jLabel1)
-                .addContainerGap(119, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jLabel1)
-                .addContainerGap(52, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(addemp)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(addemp, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-        );
+        addemp.setViewportView(jScrollPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(addemp, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(149, 149, 149)
+                .addComponent(addemp, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
-        // TODO add your handling code here:
-        AddSalesman_1 addSalesman = new AddSalesman_1();
-        System.out.println("Clicked");
-    }//GEN-LAST:event_jPanel3MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane addemp;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable salsemanInfoTable;
     // End of variables declaration//GEN-END:variables

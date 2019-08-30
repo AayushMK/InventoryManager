@@ -3,16 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/light/Documents/NetBeansProjects/InventoryManager/src/ui/Edit.java</file>
             <file>file:/C:/Users/light/Documents/NetBeansProjects/InventoryManager/src/ui/View.java</file>
+            <file>file:/C:/Users/light/Documents/NetBeansProjects/InventoryManager/src/ui/Edit.java</file>
+            <file>file:/C:/Users/light/Documents/NetBeansProjects/InventoryManager/src/ui/AddProductToStockist.java</file>
+            <file>file:/C:/Users/light/Documents/NetBeansProjects/InventoryManager/src/ui/Add.java</file>
             <file>file:/C:/Users/light/Documents/NetBeansProjects/InventoryManager/src/database/RetriveData.java</file>
             <file>file:/C:/Users/light/Documents/NetBeansProjects/InventoryManager/src/database/loader.java</file>
+            <file>file:/C:/Users/light/Documents/NetBeansProjects/InventoryManager/src/Model/Stockist.java</file>
             <file>file:/C:/Users/light/Documents/NetBeansProjects/InventoryManager/src/ui/AddSalesman.java</file>
-            <file>file:/C:/Users/light/Documents/NetBeansProjects/InventoryManager/src/Model/Salesman.java</file>
             <file>file:/C:/Users/light/Documents/NetBeansProjects/InventoryManager/src/ui/MainFrame.java</file>
-            <file>file:/C:/Users/light/Documents/NetBeansProjects/InventoryManager/src/ui/Home.java</file>
             <file>file:/C:/Users/light/Documents/NetBeansProjects/InventoryManager/src/ui/Record.java</file>
             <file>file:/C:/Users/light/Documents/NetBeansProjects/InventoryManager/src/ui/AddSalesman_1.java</file>
+            <file>file:/C:/Users/light/Documents/NetBeansProjects/InventoryManager/src/ui/Home.java</file>
         </group>
     </open-files>
 </project-private>

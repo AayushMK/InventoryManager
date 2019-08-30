@@ -5,6 +5,13 @@
  */
 package ui;
 
+import Model.Product;
+import Model.Stockist;
+import database.loader;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author light
@@ -14,8 +21,13 @@ public class View extends javax.swing.JPanel {
     /**
      * Creates new form View
      */
-    public View() {
+    loader l;
+    public View() throws ClassNotFoundException, SQLException {
+        
         initComponents();
+        l = new loader();
+        showStockistInfo();
+         showProductInfo();
     }
 
     /**
@@ -27,31 +39,108 @@ public class View extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        salsemanInfoTable = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        productInfoTable = new javax.swing.JTable();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setText("View Panel");
+        jTabbedPane1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTabbedPane1KeyPressed(evt);
+            }
+        });
+
+        salsemanInfoTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Pan Number", "Name", "Organization's Name", "Address", "Phone number", "Discount Rate", "Credit Limit"
+            }
+        ));
+        salsemanInfoTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        salsemanInfoTable.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        salsemanInfoTable.setRowHeight(25);
+        salsemanInfoTable.setShowVerticalLines(false);
+        salsemanInfoTable.setVerifyInputWhenFocusTarget(false);
+        jScrollPane1.setViewportView(salsemanInfoTable);
+
+        jTabbedPane1.addTab("Stockist", jScrollPane1);
+
+        productInfoTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Product id", "Product name", "Batch number", "Price rate", "Expiry date"
+            }
+        ));
+        jScrollPane2.setViewportView(productInfoTable);
+
+        jTabbedPane1.addTab("Product", jScrollPane2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jLabel1)
-                .addContainerGap(128, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 828, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addComponent(jLabel1)
-                .addContainerGap(142, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTabbedPane1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTabbedPane1KeyPressed
+      
+    }//GEN-LAST:event_jTabbedPane1KeyPressed
+
+    
+    private void showStockistInfo(){
+        
+        ArrayList<Stockist> sl = l.getStockist();
+        DefaultTableModel model = (DefaultTableModel) salsemanInfoTable.getModel();
+        Object[] n = new Object[7];
+       
+        for (int i = 0; i < sl.size(); i++) {
+            n[0] = sl.get(i).getPan_number();
+            n[1] = sl.get(i).getName();
+            n[2] = sl.get(i).getOrganizations_name();
+            n[3] = sl.get(i).getAddress();
+            n[4] = sl.get(i).getPhone_number();
+            n[5] = sl.get(i).getDiscount_rate();
+            n[6] = sl.get(i).getCredit_limit();
+            
+            model.addRow(n);
+            
+        }
+        
+    }
+    
+   private void showProductInfo() throws ClassNotFoundException, SQLException{
+       ArrayList<Product> pl = l.getProduct();
+       DefaultTableModel model = (DefaultTableModel) productInfoTable.getModel();
+       Object[] n = new Object[5];
+       
+       for (int i = 0; i < pl.size(); i++) {
+           n[0] = pl.get(i).getProduct_id();
+           n[1] = pl.get(i).getProduct_name();
+           n[2] = pl.get(i).getBatch_number();
+           n[3] = pl.get(i).getPrice_rate();
+           n[4] = pl.get(i).getExpiry_date();
+           
+           
+           model.addRow(n);
+       }
+   }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable productInfoTable;
+    private javax.swing.JTable salsemanInfoTable;
     // End of variables declaration//GEN-END:variables
 }

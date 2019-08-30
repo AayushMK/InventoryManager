@@ -5,7 +5,7 @@
  */
 package ui;
 
-import Model.Salesman;
+import Model.Stockist;
 import database.loader;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -201,19 +201,7 @@ public class AddSalesman extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int sn = 5;
-        String v_organizationsName = organizationsName.getText();
-        String v_address = address.getText();
-        String v_phoneNumber = phoneNumber.getText();
-        String v_panNumber = panNumber.getText();
-        String v_discountRate = discountRate.getText();
-        String v_creditLimit = creditLimit.getText();
-        Salesman s = new Salesman(sn, v_organizationsName, v_address, v_discountRate, v_creditLimit, v_phoneNumber, v_panNumber);
-        try {
-            new loader().insertSalesmanData(s);
-        } catch (SQLException ex) {
-            Logger.getLogger(AddSalesman.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
